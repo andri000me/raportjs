@@ -8,14 +8,14 @@
 		<p><a href="#" class="btn btn-success" data-toggle="modal" data-target="#myModal">
 			<i class="fa fa-plus"></i> Tambah
 		</a></p>
-
+<div class="tabel-responsive">
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
 				<th>No</th>
 				<th>Kode Kelas</th>
 				<th>Nama Kelas</th>
-				<th>Status</th>
+				<th>Aktif</th>
 				<th>Aksi</th>
 			</tr>
 		</thead>
@@ -35,6 +35,7 @@ $no++;
 <?php } ?>
 		</tbody>		
 	</table>
+</div>
 </div>
 
 
@@ -60,7 +61,7 @@ $no++;
         	</div>
         	<div class="form-group">
         		<label>Aktif</label>
-        		<select class="form-control" name="status">
+        		<select class="form-control" name="aktif">
         			<option value="yes">YES</option>
         			<option value="no">NO</option>
         		</select>

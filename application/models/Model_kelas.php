@@ -11,6 +11,15 @@
 		$data=$this->db->order_by('kode_kelas', 'ASC');
 		$data=$this->db->get('tb_kelas');
 		return $data;
+	}
+
+	function simpan($kode_kelas,$nama_kelas,$aktif) {
+		$data=array(
+			'kode_kelas'=>$kode_kelas,
+			'nama_kelas'=>$nama_kelas,
+			'aktif'=>$aktif
+		);
+		$this->db->insert('tb_kelas',$data);
 	}	
 
 } 	
