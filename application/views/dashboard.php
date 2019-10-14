@@ -15,8 +15,6 @@
     <!-- Add custom CSS here -->
     <link href="<?php echo base_url()."/assets/"; ?>css/sb-admin.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url()."/assets/"; ?>font-awesome/css/font-awesome.min.css">
-    <!-- Page Specific CSS -->
-    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
     
   </head>
 
