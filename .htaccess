@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteBase /raportjs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /raportjs/index.php [L]
+
