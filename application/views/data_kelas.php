@@ -1,3 +1,11 @@
+<!-- alert -->
+<?php if($this->session->flashdata('info')) { ?>
+<div class="alert alert-success" role="alert">
+  <?= $this->session->flashdata('info');?>
+</div>
+<?php } ?>
+<!-- alert -->
+
 <div class="panel-heading">
 	<h3 class="panel-title">
 	<i class="fa fa-table"></i>	<?= $judul; ?>
@@ -30,7 +38,10 @@ $no++;
 				<td><?= $row['kode_kelas'];?></td>
 				<td><?= $row['nama_kelas'];?></td>
 				<td><?= $row['aktif'];?></td>
-				<td>XXX</td>
+				<td>
+          <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModalEdit" onclick="edit('<?= $row['kode_kelas'];?>')"><i class="fa fa-pencil" ></i></a> 
+          <a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a> 
+        </td>
 			</tr>
 <?php } ?>
 		</tbody>		
@@ -50,7 +61,7 @@ $no++;
         <h4 class="modal-title">Tambah Data</h4>
       </div>
       <div class="modal-body">
-        <form role="form">
+        <form role="form" method="post" action="<?= site_url('kelas/simpan');?>">
         	<div class="form-group">
         		<label>Kode kelas</label>
         		<input type="text" name="kode_kelas" class="form-control" required="required">
@@ -66,14 +77,59 @@ $no++;
         			<option value="no">NO</option>
         		</select>
         	</div>
-        </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-success">Save</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        <button type="reset" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>        
+        </form>
       </div>
     </div>
 
   </div>
 </div>
 <!-- modal  -->
+
+<!-- modal edit -->
+<div id="myModalEdit" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Data</h4>
+      </div>
+      <form role="form" method="post" action="">
+      <div class="modal-body" id="tempat_edit">
+      
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Update</button>
+        <button type="reset" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>        
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- modal edit -->
+
+<script type="text/javascript">
+  function edit(id) {
+    
+    var kode_kelas=id;
+
+    $.ajax({
+      type: "post",
+      url : "<?= site_url('kelas/edit') ?>",
+      data: "kode_kelas="+kode_kelas,
+      success: function(data) {
+        console.log(data);
+        $("#tempat_edit").html(data);
+      }
+    });
+
+  }
+</script>
+
+

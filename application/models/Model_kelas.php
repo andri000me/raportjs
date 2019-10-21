@@ -7,12 +7,13 @@
 		//$this->load->library('database');		
 	}
 
-	function getAll() { //ambil data tb_kelas semua
+	function getAll() { //ambil data semua
 		$data=$this->db->order_by('kode_kelas', 'ASC');
 		$data=$this->db->get('tb_kelas');
 		return $data;
 	}
 
+	//untuk simpan data
 	function simpan($kode_kelas,$nama_kelas,$aktif) {
 		$data=array(
 			'kode_kelas'=>$kode_kelas,
@@ -20,6 +21,12 @@
 			'aktif'=>$aktif
 		);
 		$this->db->insert('tb_kelas',$data);
-	}	
+	}
+
+	function edit($kode_kelas)	{
+		$data=$this->db->where('kode_kelas',$kode_kelas);
+		$data=$this->db->get('tb_kelas');
+		return $data;
+	}
 
 } 	
