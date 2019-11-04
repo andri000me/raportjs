@@ -26,7 +26,7 @@ class Siswa extends CI_controller {
 		$kota_kab=$this->input->post('kota_kab',true);
 		$gender=$this->input->post('gender',true);
 		$kelas=$this->input->post('kelas',true);
-		$simpan=$this->Model_siswa->simpan($nis,md5($password),$alamat,$kota_kab,$gender,$kelas);
+		$simpan=$this->Model_siswa->simpan($nis,$nama,password_hash($password, PASSWORD_BCRYPT),$alamat,$kota_kab,$gender,$kelas);
 		//untuk pesan operasi berhasil
 		$this->session->set_flashdata('info','Data Berhasil Masuk!');
 		redirect('siswa');
@@ -102,7 +102,7 @@ class Siswa extends CI_controller {
 		$kota_kab=$this->input->post('kota_kab',true);
 		$gender=$this->input->post('gender',true);
 		$kelas=$this->input->post('kelas',true);
-		$update=$this->Model_siswa->simpan($nis,md5($password),$alamat,$kota_kab,$gender,$kelas);
+		$update=$this->Model_siswa->update($nis,$nama,password_hash($password, PASSWORD_BCRYPT),$alamat,$kota_kab,$gender,$kelas);
 		$this->session->set_flashdata('info','Data Berhasil Diubah!');
 		redirect('siswa');
 	}
