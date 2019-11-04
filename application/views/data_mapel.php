@@ -21,8 +21,9 @@
 		<thead>
 			<tr>
 				<th>No</th>
-				<th>Kode Kelas</th>
-				<th>Nama Kelas</th>
+				<th>Kode mapel</th>
+        <th>Nama mapel</th>
+				<th>Guru</th>
 				<th>Aktif</th>
 				<th>Aksi</th>
 			</tr>
@@ -35,12 +36,13 @@ $no++;
 ?>
 			<tr>
 				<td><?php echo $no; ?></td>
-				<td><?= $row['kode_kelas'];?></td>
-				<td><?= $row['nama_kelas'];?></td>
+				<td><?= $row['id_mapel'];?></td>
+        <td><?= $row['nama_mapel'];?></td>
+				<td><?= $row['guru'];?></td>
 				<td><?= $row['aktif'];?></td>
 				<td>
-          <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModalEdit" onclick="edit('<?= $row['kode_kelas'];?>')"><i class="fa fa-pencil" ></i></a> 
-          <a href="<?= site_url('kelas/hapus/'.$row['kode_kelas']); ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin?')"><i class="fa fa-times"></i></a> 
+          <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModalEdit" onclick="edit('<?= $row['id_mapel'];?>')"><i class="fa fa-pencil" ></i></a> 
+          <a href="<?= site_url('mapel/hapus/'.$row['id_mapel']); ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin?')"><i class="fa fa-times"></i></a> 
         </td>
 			</tr>
 <?php } ?>
@@ -61,15 +63,19 @@ $no++;
         <h4 class="modal-title">Tambah Data</h4>
       </div>
       <div class="modal-body">
-        <form role="form" method="post" action="<?= site_url('kelas/simpan');?>">
+        <form role="form" method="post" action="<?= site_url('mapel/simpan');?>">
         	<div class="form-group">
-        		<label>Kode kelas</label>
-        		<input type="text" name="kode_kelas" class="form-control" required="required">
+        		<label>ID mapel</label>
+        		<input type="text" name="id_mapel" class="form-control" required="required">
         	</div>
         	<div class="form-group">
-        		<label>Nama kelas</label>
-        		<input type="text" name="nama_kelas" class="form-control" required="required">
+        		<label>Nama mapel</label>
+        		<input type="text" name="nama_mapel" class="form-control" required="required">
         	</div>
+          <div class="form-group">
+            <label>Nama Guru</label>
+            <input type="text" name="guru" class="form-control" required="required">
+          </div>
         	<div class="form-group">
         		<label>Aktif</label>
         		<select class="form-control" name="aktif">
@@ -99,7 +105,7 @@ $no++;
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Edit Data</h4>
       </div>
-      <form role="form" method="post" action="<?= site_url('kelas/update'); ?>">
+      <form role="form" method="post" action="<?= site_url('mapel/update'); ?>">
       <div class="modal-body" id="tempat_edit">
       
       </div>
@@ -117,12 +123,12 @@ $no++;
 <script type="text/javascript">
   function edit(id) {
     
-    var kode_kelas=id;
+    var id_mapel=id;
 
     $.ajax({
       type: "post",
-      url : "<?= site_url('kelas/edit') ?>",
-      data: "kode_kelas="+kode_kelas,
+      url : "<?= site_url('mapel/edit') ?>",
+      data: "id_mapel="+id_mapel,
       success: function(data) {
         console.log(data);
         $("#tempat_edit").html(data);

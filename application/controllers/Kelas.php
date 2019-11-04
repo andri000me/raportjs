@@ -30,6 +30,13 @@ class Kelas extends CI_controller {
 		$kode_kelas=$this->input->post('kode_kelas',true);
 		$data=$this->Model_kelas->edit($kode_kelas);
 		$result=$data->row();
+		if(strcmp($result->aktif, 'yes')) {
+			$aktif='selected';
+			$tidak='';
+		} else {
+			$aktif='';
+			$tidak='selected';
+		}
 		?>		  
           <div class="form-group">
             <label>Kode kelas</label>
@@ -42,10 +49,29 @@ class Kelas extends CI_controller {
           <div class="form-group">
             <label>Aktif</label>
             <select class="form-control" name="aktif">
-              <option value="yes">YES</option>
-              <option value="no">NO</option>
+              <option value="yes" <?= $aktif; ?>>YES</option>
+              <option value="no" <?= $aktif; ?>>NO</option>
             </select>
           </div>
 		<?php
 	}
+
+	function update() {
+		$kode_kelas=$this->input->post('kode_kelas',true);
+		$nama_kelas=$this->input->post('nama_kelas',true);
+		$aktif=$this->input->post('aktif',true);
+		$update=$this->Model_kelas->update($kode_kelas,$nama_kelas,$aktif);
+		//untuk pesan operasi berhasil
+		$this->session->set_flashdata('info','Data Berhasil Diubah!');
+		redirect('Kelas');
+	}
+
+	function hapus() {
+		$kode_kelas=$this->uri->segment(3);
+		$hapus=$this->Model_kelas->hapus($kode_kelas);
+		//untuk pesan operasi berhasil
+		$this->session->set_flashdata('info','Data Berhasil Dihapus!');
+		redirect('Kelas');
+	}
+
 }

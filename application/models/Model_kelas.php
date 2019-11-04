@@ -29,4 +29,18 @@
 		return $data;
 	}
 
+	function update($kode_kelas,$nama_kelas,$aktif) {
+		$data=array(
+			'nama_kelas'=>$nama_kelas,
+			'aktif'=>$aktif
+		);
+		$this->db->where('kode_kelas',$kode_kelas);
+		$this->db->update('tb_kelas',$data);
+	}
+
+	function hapus($kode_kelas) {
+		$this->db->where('kode_kelas',$kode_kelas);
+		$this->db->delete('tb_kelas');
+	}
+
 } 	
