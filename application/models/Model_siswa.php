@@ -29,7 +29,8 @@
 			'nis'=>$nis,
 			'nama'=>$nama,
 			'password'=>$password,
-			'alamat'=>$kota_kab,
+			'alamat'=>$alamat,
+			'kota_kab'=>$kota_kab,
 			'gender'=>$gender,
 			'kelas'=>$kelas
 		);
@@ -46,8 +47,9 @@
 		$data=array(
 			'nama'=>$nama,
 			'password'=>$password,
-			'alamat'=>$kota_kab,
-			'gender'=>$gender,
+			'alamat'=>$alamat,
+			'kota_kab'=>$alamat,
+			'gender'=>$kota_kab,
 			'kelas'=>$kelas
 		);
 		$this->db->where('nis',$nis);
