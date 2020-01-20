@@ -5,7 +5,7 @@ class Kelas extends CI_controller {
 		parent:: __construct();
 		//load model Kelas
 		$this->load->model('Model_kelas');
-		//$this->load->library('session');
+		if(!$this->session->userdata('logged_in')) {redirect('login','refresh');}
 	}
 
 	function index() {

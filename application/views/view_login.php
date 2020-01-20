@@ -31,7 +31,16 @@
 
     <div class="container">
 
-      <form class="form-signin" method="post" action="">
+<!-- alert -->
+<?php if($this->session->flashdata('danger')) { ?>
+<div class="alert alert-danger" role="alert">
+  <?= $this->session->flashdata('danger');?>
+</div>
+<?php } ?>
+<!-- alert -->
+
+
+      <form class="form-signin" method="post" action="<?php echo site_url('login/cek'); ?>">
         <h2 class="form-signin-heading"><?php echo $judul; ?></h2>
         <label for="inputEmail" class="sr-only">Username</label>
         <input type="text" class="form-control" placeholder="Username" name="username" required>

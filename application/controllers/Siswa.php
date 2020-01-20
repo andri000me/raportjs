@@ -7,6 +7,8 @@ class Siswa extends CI_controller {
 		$this->load->model('Model_siswa');
 		//load model kelas
 		$this->load->model('Model_kelas');
+		//agar user login dulu
+		if(!$this->session->userdata('logged_in')) {redirect('login','refresh');}
 	}
 
 	function index() {

@@ -7,7 +7,7 @@ class Nilai extends CI_controller {
 		$this->load->model('Model_nilai');
 		$this->load->model('Model_siswa');
 		$this->load->model('Model_mapel');
-		//$this->load->library('session');
+		if(!$this->session->userdata('logged_in')) {redirect('login','refresh');}
 	}
 
 	function index() {
