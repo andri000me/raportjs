@@ -1,3 +1,9 @@
+<?php
+foreach ($konten->result_array() as $row) {
+  $mapel[]=$row['nama_mapel'];
+  $nilai[]=(int)$row['nilai'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,6 +19,11 @@
     <link href="<?php echo base_url()."/assets/"; ?>css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url()."/assets/"; ?>font-awesome/css/font-awesome.min.css">
     
+    <!-- Chatist -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    
+
   </head>
 
   <body>
@@ -43,63 +54,17 @@
 </nav>
 <!-- navbar -->
 <div class="container">  
-  <div class="jumbotron">
-    <h1>Selamat Datang</h1>
-    <p>Ini adalah aplikasi raport online dengan Framework CodeIgniter</p>
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+      <i class="fa fa-table"></i> <?= $judul; ?>
+      </h3>
+    </div>
+    <div class="panel-body ct-chart"></div>
+    
   </div>
 
-  <table class="table table-hover">
-    <thead>
-    <tr class="danger">
-      <th>No</th>
-      <th>NIS</th>
-      <th>Nama</th>
-      <th>Mapel</th>
-      <th>Guru</th>
-      <th>Nilai</th>
-      <th>Predikat</th>
-    </tr>
-    </thead>
-    <tbody>
-<?php 
-$jumlah=0;
-$rerata=0;
-$no=0;
-foreach($konten->result_array() as $row) {
-$no++;
- ?>
-      <tr class="warning">
-      <td><?= $no; ?></td>
-      <td><?= $row['nis']; ?></td>
-      <td><?= $row['nama']; ?></td>
-      <td><?= $row['nama_mapel']; ?></td>
-      <td><?= $row['guru']; ?></td>
-      <td><?= $row['nilai']; ?></td>
-      <td><?php 
-      if($row['nilai']>=85) {
-        echo "A";
-      } else if($row['nilai']>=70) {
-        echo "B";
-      } else {
-        echo "C";
-      }
-      $jumlah=$jumlah+$row['nilai'];
-
-      ?></td>
-      </tr>
-<?php } ?>
-      <tr class="success">
-        <td colspan="5">Jumlah</td>
-        <td><?= $jumlah ?></td>
-        <td></td>
-      </tr>
-      <tr class="info">
-        <td colspan="5">Rerata</td>
-        <td><?= $rerata=$jumlah/$no; ?></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <p align="center">    
     <a href="#" class="btn btn-primary" onclick="window.print();"><i class="fa fa-print"></i> Cetak</a>
   </p>
@@ -108,6 +73,23 @@ $no++;
   <!-- JavaScript -->
     <script src="<?php echo base_url()."/assets/"; ?>js/jquery-1.10.2.js"></script>
     <script src="<?php echo base_url()."/assets/"; ?>js/bootstrap.js"></script>
+
+<script type="text/javascript">
+$(function() {
+  var data = {
+    // A labels array that can contain any sort of values
+    labels: <?= json_encode($mapel);?>,
+    // Our series array that contains series objects or in this case series data arrays
+    series: [
+      <?= json_encode($nilai);?>
+    ]
+  };
+  var options = {
+    height: 600
+  };
+  new Chartist.Bar('.ct-chart', data, options);
+});
+</script>
 
   </body>
 </html>

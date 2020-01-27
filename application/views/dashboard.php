@@ -15,6 +15,10 @@
     <!-- Add custom CSS here -->
     <link href="<?php echo base_url()."/assets/"; ?>css/sb-admin.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url()."/assets/"; ?>font-awesome/css/font-awesome.min.css">
+
+    <!-- Chatist -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     
   </head>
 

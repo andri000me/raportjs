@@ -17,4 +17,13 @@ class Raport extends CI_controller {
 		$this->load->view('view_raport',$data);
 	}
 
+	function grafik() {
+		//ambil nis dari session
+		$nis=$this->session->userdata('nis'); 
+		$data['judul']="Grafik Nilai Siswa";
+		//cari data nilai dari nis
+		$data['konten']=$this->Model_nilai->cari($nis); 
+		$this->load->view('view_grafik',$data);
+	}
+
 }
