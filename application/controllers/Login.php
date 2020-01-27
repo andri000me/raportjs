@@ -39,7 +39,24 @@ class Login extends CI_controller {
 				}
 
 			} else { //siswa
-				echo "ini siswa";
+				// echo "ini siswa";
+				$cek_siswa=$this->Model_login->cek_siswa($username,md5($password));
+
+				if($cek_siswa) {
+					// echo "selamat datang siswa";
+					//data session
+					$data=array('nis'=>$username,'logged_in'=>true);
+					$this->session->set_userdata($data);
+
+					//jika berhasil masuk ke laman raport
+					redirect('raport');
+				} else {
+					// echo "data tidak ditemukan";
+					//kembali ke laman login
+					$this->session->set_flashdata('danger','Data tidak ditemukan!');
+					redirect('login','refresh');
+				}
+
 			}
 		}
 

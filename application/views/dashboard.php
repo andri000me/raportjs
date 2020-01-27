@@ -34,7 +34,8 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
 		<!--sidebar-->
 		<?php echo $_sidebar; ?>          
-		<!--endsidebar-->
+		<!--
+    endsidebar-->
         </div><!-- /.navbar-collapse -->
       </nav>
 

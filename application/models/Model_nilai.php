@@ -13,11 +13,13 @@
 		return $data;
 	}
 
-	function cari($keyword) {
-		$query="select tb_siswa.nis AS nis, tb_siswa.nama AS nama ,tb_nilai.nilai AS nilai, tb_nilai.id_nilai AS id_nilai, tb_nilai.tanggal AS tanggal,tb_nilai.mapel AS mapel, tb_mapel.guru AS guru, tb_mapel.nama_mapel FROM tb_siswa LEFT JOIN tb_nilai ON tb_siswa.nis=tb_nilai.nis RIGHT JOIN tb_mapel ON tb_nilai.mapel=tb_mapel.id_mapel WHERE tb_siswa.nama LIKE '%$keyword%'";
+	function cari($nis) {
+		$query="select tb_siswa.nis AS nis, tb_siswa.nama AS nama ,tb_nilai.nilai AS nilai, tb_nilai.id_nilai AS id_nilai, tb_nilai.tanggal AS tanggal,tb_nilai.mapel AS mapel, tb_mapel.guru AS guru, tb_mapel.nama_mapel FROM tb_siswa LEFT JOIN tb_nilai ON tb_siswa.nis=tb_nilai.nis RIGHT JOIN tb_mapel ON tb_nilai.mapel=tb_mapel.id_mapel WHERE tb_nilai.nis='$nis'";
 		$data=$this->db->query($query);
 		return $data;
 	}
+
+	
 
 	function getAll() { //ambil data semua
 		$data=$this->db->order_by('id_nilai', 'ASC');

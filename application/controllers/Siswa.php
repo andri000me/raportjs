@@ -28,7 +28,8 @@ class Siswa extends CI_controller {
 		$kota_kab=$this->input->post('kota_kab',true);
 		$gender=$this->input->post('gender',true);
 		$kelas=$this->input->post('kelas',true);
-		$simpan=$this->Model_siswa->simpan($nis,$nama,password_hash($password, PASSWORD_BCRYPT),$alamat,$kota_kab,$gender,$kelas);
+		$simpan=$this->Model_siswa->simpan($nis,$nama,md5($password),$alamat,$kota_kab,$gender,$kelas);
+		$simpan=$this->Model_siswa->simpan($nis,$nama,md5($password),$alamat,$kota_kab,$gender,$kelas);
 		//untuk pesan operasi berhasil
 		$this->session->set_flashdata('info','Data Berhasil Masuk!');
 		redirect('siswa');
@@ -58,11 +59,11 @@ class Siswa extends CI_controller {
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input type="password" name="guru" class="form-control" required="required">
+            <input type="password" name="password" class="form-control" required="required">
           </div>
           <div class="form-group">
             <label>Alamat</label>
-            <textarea class="form-control"><?= $result->alamat; ?></textarea>
+            <textarea class="form-control" name="alamat"><?= $result->alamat; ?></textarea>
           </div>
           <div class="form-group">
             <label>Kota/Kab</label>
@@ -104,7 +105,8 @@ class Siswa extends CI_controller {
 		$kota_kab=$this->input->post('kota_kab',true);
 		$gender=$this->input->post('gender',true);
 		$kelas=$this->input->post('kelas',true);
-		$update=$this->Model_siswa->update($nis,$nama,password_hash($password, PASSWORD_BCRYPT),$alamat,$kota_kab,$gender,$kelas);
+		// $update=$this->Model_siswa->update($nis,$nama,password_hash($password, PASSWORD_BCRYPT),$alamat,$kota_kab,$gender,$kelas);
+		$update=$this->Model_siswa->update($nis,$nama,md5($password),$alamat,$kota_kab,$gender,$kelas);
 		$this->session->set_flashdata('info','Data Berhasil Diubah!');
 		redirect('siswa');
 	}

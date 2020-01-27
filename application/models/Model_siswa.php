@@ -48,8 +48,8 @@
 			'nama'=>$nama,
 			'password'=>$password,
 			'alamat'=>$alamat,
-			'kota_kab'=>$alamat,
-			'gender'=>$kota_kab,
+			'kota_kab'=>$kota_kab,
+			'gender'=>$gender,
 			'kelas'=>$kelas
 		);
 		$this->db->where('nis',$nis);
