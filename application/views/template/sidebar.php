@@ -9,7 +9,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> User Menu <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#"><i class="fa fa-key"></i> Ganti Password</a></li>
+                <li><a href="<?= site_url('admin');?>"><i class="fa fa-key"></i> Ganti Password</a></li>
                 <li><a href="<?= site_url('login/logout');?>" onclick="return confirm('yakin mau keluar?');"><i class="fa fa-sign-out"></i> Logout</a></li>
               </ul>
 </li>

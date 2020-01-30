@@ -22,4 +22,12 @@
 			return FALSE;
 		}
 	}
+
+	function update_pass($username,$password) {
+		$data=array(
+			'password'=>$password
+			);
+		$this->db->where('username',$username);
+		$this->db->update('tb_admin',$data);
+	}
 }
